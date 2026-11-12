@@ -1,0 +1,85 @@
+{
+  "log": [
+    {
+      "step": 250,
+      "train_loss": 2.426600803613663,
+      "val_loss": 2.4168700449992606
+    },
+    {
+      "step": 500,
+      "train_loss": 2.385268152117729,
+      "val_loss": 2.3968854420288013
+    },
+    {
+      "step": 750,
+      "train_loss": 2.376043881058693,
+      "val_loss": 2.376980549312075
+    },
+    {
+      "step": 1000,
+      "train_loss": 2.35880988240242,
+      "val_loss": 2.363013787159618
+    },
+    {
+      "step": 1250,
+      "train_loss": 2.346723761677742,
+      "val_loss": 2.354028517025452
+    }
+  ],
+  "time_sec": 1337.4888274669647,
+  "peak_gb": 5.576813568,
+  "before": [
+    {
+      "prompt": "SUBREDDIT: r/relationships\nTITLE: My boyfriend [21M] said incredibly hurtful stuff to me [18/F] his words are etched in my mind and now I'm walking eggshells with him. Help.\nPOST: We had an awful fight yesterday and he literally ripped into me and ended off by saying \"And I'm not going feel bad !\" We got out of the car and things were awkward. I felt so weak and sad, he went to talk to his friends like nothing happened ... I was beside myself. I decided to go and apologise for making him that angry, he said it was cool and we made up ... but I am still deeply hurt by what he said ... I want to hurt the way he hurt me ... also I'm big on comuncating my feelings , but I'm petrified telling him his words hurt me, will result in another fight like yesterday's one. What should I do ? Because at this point I really just want to be done with him and move on ...\nTL;DR:",
+      "reference": "Boyfriend said some would stuff to me and I am so deeply hurt by them, but I'm scared bringing it up will result in another argument in which he ruins me once more.",
+      "generated": "I'm not going to tell him I'm sorry, I'm not going to tell him I'm sorry, I'm not going to tell him I'm sorry, I'm not going to tell him I'm sorry, I'm not going"
+    },
+    {
+      "prompt": "SUBREDDIT: r/relationship_advice\nTITLE: When you've been assured that a girl has the same feeling you have, is it alright to just ask here to be \"more than friends\"?\nPOST: unfortunately, I can't really ask her to go anywhere this week because of how busy we are in school and that we are low income teenagers. However, I've hung out with her after school a lot and got to really know each other. I mean like, being comfortable enough to discuss personal things and even made her cry because I've asked her about something emotional( It was later confirmed through a friend that she was happy she was comfortable enough to do that in front of me). The same friend told me that she has the same feeling I do, so I was just wondering if it would be ok to just straight up ask her to be my girlfriend. I've picked out somewhere private and something meaningful to say. Should I do it? Is this the best approach to the situation I'm dealing with.\nTL;DR:",
+      "reference": "If we both know we like each other, and have really hit it off, can I just straight up ask her to be my girlfriend?",
+      "generated": "I'm not sure if I should ask her to be my girlfriend or not.\n\nI'm not sure if I should ask her to be my girlfriend.\n\nI'm not sure if I should ask her to be my girlfriend."
+    },
+    {
+      "prompt": "SUBREDDIT: r/relationships\nTITLE: Me [18 M] with my ex[16 F] broke up because she cant love?\nPOST: Yesterday  my (ex-)girlfriend broke up with me.  \nShe said she is not able to love and she is \"unable  to bond\"..  \nI cant belive that..is there really something like \"not able to love\"?  \nI even asked her  if she loved me at all times and she answered \"I dont know,it felt weird\" but on the other hand she had  things like our date where we came together on her wall(On a paper written in roman numbers) and she wanted to see or skype with me all the time..We even met 1 day before she broke up and everything felt right there..  \n  \nWe were together for 2 month,i know its not that long..but i love extremely and its really hard to realize for me that she\u00b4s gone.  \nI tried to talk to her but she just said \"just let it be\"..  \n  \nShould i keep trying to talk her?Should i just wait?Maybe she will talk to me after some time?Can it be that she has a new one?\nTL;DR:",
+      "reference": "Girlfriend broke up and told me \"its her fault,i cant love,im not able to bond\"",
+      "generated": "I dont know if she is going to be able to love me anymore.\n\nI am not sure if she is going to be able to love me anymore.\n\nI am not sure if she is going to be able to love"
+    },
+    {
+      "prompt": "SUBREDDIT: r/personalfinance\nTITLE: Banking Advice\nPOST: Hey there, PF!  \n\nBacground:  \nI'm a 20 year old college student who has been banking with Bank of America for the last 5 years with an eBanking checking account (little to no fees as long as everything is done online) and a regular Savings account. I also have their BankAmericard Cash Rewards Platinum Plus Visa credit card.  \n\nRecently, they've been getting rid of their eBanking checking accounts and converting them to Core checking accounts (many fees if you don't maintain a balance of ~$2,500). I am leaning towards closing my checking account with them and possibly moving to a credit union or Charles Schwab? I've heard good things on this sub for both options.\n\nMain Questions:  \n1. Can I keep my savings account and credit card with BoA and just close my checking?  \n2. What are the pros/cons of credit unions and Charles Schwab?\nTL;DR:",
+      "reference": "I want to close my BoA checking account, but keep my savings and credit card with them. Is this possible? And, which is better: a credit union or Charles Schwab?",
+      "generated": "I'm not sure what to do. I'm not sure if I should keep my savings account or credit card. I'm not sure if I should keep my savings account or credit card. I'm not sure if I should keep my savings"
+    },
+    {
+      "prompt": "SUBREDDIT: r/relationship_advice\nTITLE: my GF [22F] Broke up with me [21M] recently and we have a holiday booked. Should I hold out?\nPOST: Hi relationship advice! I'm struggling lately, this was the girl of my dreams, we went to school together, then we mmet up a few years later and we hit it off. we had been together for only 7 months. But she was the love of my life. I was (am) so sure...She is having some rough patches maybe? She broke up with me 3 weeks ago, after a month of being off with me. The excuse was that we needed space? I don't think we did, we never argued and always had a good time. \n\nIt has been a struggle, I have not been speaking to her and I don't have her on facebook. the only struggle I have is that she is going out lots and ive seen her in pictures with guys, and it just breaks my heart :(. We have a holiday booked abroad in September, and it has all been paid for (no refunds). DO females come around? She says she loves me, so does that mean she will be back? When am I suppoed to talk to her again. This heartache and depression is eating me from the inside, and since I have been cheated on in the past, I am only assuming the worst and that somebody else could be on the scene?\nTL;DR:",
+      "reference": "GF broke up with me, Don't know if she will be back or not? We have a holiday booked, should I be expecting her to come? Or should I just not go atal/go on my own?",
+      "generated": "I am not sure if I should hold out or not. I am not sure if I should be able to talk to her again.\n\nI am not sure if I should be able to talk to her again. I am not sure"
+    }
+  ],
+  "after": [
+    {
+      "prompt": "SUBREDDIT: r/relationships\nTITLE: My boyfriend [21M] said incredibly hurtful stuff to me [18/F] his words are etched in my mind and now I'm walking eggshells with him. Help.\nPOST: We had an awful fight yesterday and he literally ripped into me and ended off by saying \"And I'm not going feel bad !\" We got out of the car and things were awkward. I felt so weak and sad, he went to talk to his friends like nothing happened ... I was beside myself. I decided to go and apologise for making him that angry, he said it was cool and we made up ... but I am still deeply hurt by what he said ... I want to hurt the way he hurt me ... also I'm big on comuncating my feelings , but I'm petrified telling him his words hurt me, will result in another fight like yesterday's one. What should I do ? Because at this point I really just want to be done with him and move on ...\nTL;DR:",
+      "reference": "Boyfriend said some would stuff to me and I am so deeply hurt by them, but I'm scared bringing it up will result in another argument in which he ruins me once more.",
+      "generated": "boyfriend said hurtful things to me, I want to hurt him but I'm afraid of hurting my feelings and I don't know what to do."
+    },
+    {
+      "prompt": "SUBREDDIT: r/relationship_advice\nTITLE: When you've been assured that a girl has the same feeling you have, is it alright to just ask here to be \"more than friends\"?\nPOST: unfortunately, I can't really ask her to go anywhere this week because of how busy we are in school and that we are low income teenagers. However, I've hung out with her after school a lot and got to really know each other. I mean like, being comfortable enough to discuss personal things and even made her cry because I've asked her about something emotional( It was later confirmed through a friend that she was happy she was comfortable enough to do that in front of me). The same friend told me that she has the same feeling I do, so I was just wondering if it would be ok to just straight up ask her to be my girlfriend. I've picked out somewhere private and something meaningful to say. Should I do it? Is this the best approach to the situation I'm dealing with.\nTL;DR:",
+      "reference": "If we both know we like each other, and have really hit it off, can I just straight up ask her to be my girlfriend?",
+      "generated": "I've been told that a girl has the same feeling I have, should I just ask her to be my girlfriend?"
+    },
+    {
+      "prompt": "SUBREDDIT: r/relationships\nTITLE: Me [18 M] with my ex[16 F] broke up because she cant love?\nPOST: Yesterday  my (ex-)girlfriend broke up with me.  \nShe said she is not able to love and she is \"unable  to bond\"..  \nI cant belive that..is there really something like \"not able to love\"?  \nI even asked her  if she loved me at all times and she answered \"I dont know,it felt weird\" but on the other hand she had  things like our date where we came together on her wall(On a paper written in roman numbers) and she wanted to see or skype with me all the time..We even met 1 day before she broke up and everything felt right there..  \n  \nWe were together for 2 month,i know its not that long..but i love extremely and its really hard to realize for me that she\u00b4s gone.  \nI tried to talk to her but she just said \"just let it be\"..  \n  \nShould i keep trying to talk her?Should i just wait?Maybe she will talk to me after some time?Can it be that she has a new one?\nTL;DR:",
+      "reference": "Girlfriend broke up and told me \"its her fault,i cant love,im not able to bond\"",
+      "generated": "Ex broke up with me, she said she cant love and she is \"unable to bond\"..I cant believe it.."
+    },
+    {
+      "prompt": "SUBREDDIT: r/personalfinance\nTITLE: Banking Advice\nPOST: Hey there, PF!  \n\nBacground:  \nI'm a 20 year old college student who has been banking with Bank of America for the last 5 years with an eBanking checking account (little to no fees as long as everything is done online) and a regular Savings account. I also have their BankAmericard Cash Rewards Platinum Plus Visa credit card.  \n\nRecently, they've been getting rid of their eBanking checking accounts and converting them to Core checking accounts (many fees if you don't maintain a balance of ~$2,500). I am leaning towards closing my checking account with them and possibly moving to a credit union or Charles Schwab? I've heard good things on this sub for both options.\n\nMain Questions:  \n1. Can I keep my savings account and credit card with BoA and just close my checking?  \n2. What are the pros/cons of credit unions and Charles Schwab?\nTL;DR:",
+      "reference": "I want to close my BoA checking account, but keep my savings and credit card with them. Is this possible? And, which is better: a credit union or Charles Schwab?",
+      "generated": "I'm banking with BoA and want to close my checking account with them and move to a credit union or Charles Schwab."
+    },
+    {
+      "prompt": "SUBREDDIT: r/relationship_advice\nTITLE: my GF [22F] Broke up with me [21M] recently and we have a holiday booked. Should I hold out?\nPOST: Hi relationship advice! I'm struggling lately, this was the girl of my dreams, we went to school together, then we mmet up a few years later and we hit it off. we had been together for only 7 months. But she was the love of my life. I was (am) so sure...She is having some rough patches maybe? She broke up with me 3 weeks ago, after a month of being off with me. The excuse was that we needed space? I don't think we did, we never argued and always had a good time. \n\nIt has been a struggle, I have not been speaking to her and I don't have her on facebook. the only struggle I have is that she is going out lots and ive seen her in pictures with guys, and it just breaks my heart :(. We have a holiday booked abroad in September, and it has all been paid for (no refunds). DO females come around? She says she loves me, so does that mean she will be back? When am I suppoed to talk to her again. This heartache and depression is eating me from the inside, and since I have been cheated on in the past, I am only assuming the worst and that somebody else could be on the scene?\nTL;DR:",
+      "reference": "GF broke up with me, Don't know if she will be back or not? We have a holiday booked, should I be expecting her to come? Or should I just not go atal/go on my own?",
+      "generated": "GF broke up with me, we have a holiday booked in September, should I hold out?"
+    }
+  ]
+}
