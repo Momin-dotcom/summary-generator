@@ -1,88 +1,81 @@
-import json, os, random, sys
+import os, json, time
+import torch
 from functools import partial
-from pathlib import Path
-import numpy as np, torch
 from torch.utils.data import DataLoader
-import matplotlib.pyplot as plt
-
-sys.path.insert(0, str(Path(__file__).resolve().parent / "starter"))
-
-from common import sft_loss, generate_greedy
+from common import token_logprobs, summary_mask, generate_ids, decode, peak_gb
 from models import load_tokenizer, load_causal_lm
 from data import load_sft_splits, load_eval_posts
 from batching import collate_sft, collate_prompts
 from config import SEED
 
-LR, BATCH, CLIP, LOG_EVERY = 5e-5, 16, 1.0, 250
-os.makedirs("results", exist_ok=True)
-random.seed(SEED); np.random.seed(SEED); torch.manual_seed(SEED)
-device = "cuda" if torch.cuda.is_available() else "cpu"
+BS, MB, LR, EVERY = 16, 4, 5e-5, 250
 
+torch.manual_seed(SEED)
 tok = load_tokenizer()
-sft_train, sft_val = load_sft_splits(tok)
-eval_posts = load_eval_posts(tok)
 pad = tok.pad_token_id
+train, val = load_sft_splits(tok)
+eval_posts = load_eval_posts(tok)
+model = load_causal_lm()
+dev = next(model.parameters()).device
+os.makedirs("results", exist_ok=True)
+os.makedirs("checkpoints/sft", exist_ok=True)
 
-train_dl = DataLoader(sft_train, BATCH, shuffle=True, collate_fn=partial(collate_sft, pad_id=pad))
-val_dl   = DataLoader(sft_val, 32, shuffle=False,   collate_fn=partial(collate_sft, pad_id=pad))
 
-gen_posts = eval_posts[:5]
-gen_batch = collate_prompts(gen_posts, pad)
+def samples(model, n=5):
+    model.eval()
+    items = eval_posts[:n]
+    outs = generate_ids(model, collate_prompts(items, pad), tok)
+    return [{"prompt": x["prompt"], "reference": x["summary"].strip(), "generated": decode(tok, o)}
+            for x, o in zip(items, outs)]
 
-model = load_causal_lm(device=device)
 
 @torch.no_grad()
-def validate():
+def val_loss():
     model.eval()
-    tot, cnt = 0.0, 0.0
-    for b in val_dl:
-        loss, n = sft_loss(model, b, device)
-        tot += loss.item() * n.item()           # token-weighted
-        cnt += n.item()
+    loader = DataLoader(val, 8, shuffle=False, collate_fn=partial(collate_sft, pad_id=pad))
+    tot, n = 0.0, 0.0
+    for b in loader:
+        ids, mask = b["input_ids"].to(dev), b["attention_mask"].to(dev)
+        lp = token_logprobs(model, ids, mask)
+        m = summary_mask(b["prompt_lens"], mask)
+        tot += -(lp * m).sum().item()
+        n += m.sum().item()
     model.train()
-    return tot / cnt
+    return tot / n
 
-# 2.5 BEFORE SFT
-before = generate_greedy(model, tok, gen_batch, 48, device)
 
-# 2.3 training: 1 epoch = 20000/16 = 1250 steps
-opt = torch.optim.AdamW(model.parameters(), lr=LR)
+before = samples(model)
+model.config.use_cache = False
+model.gradient_checkpointing_enable()
 model.train()
-log, window, step = [], [], 0
-log.append({"step": 0, "train_loss": None, "val_loss": validate()})
+opt = torch.optim.AdamW(model.parameters(), lr=LR)
+loader = DataLoader(train, BS, shuffle=True, collate_fn=partial(collate_sft, pad_id=pad))
 
-for batch in train_dl:
-    loss, _ = sft_loss(model, batch, device)
+log, run, t0 = [], 0.0, time.time()
+for step, b in enumerate(loader, 1):
+    ids, mask = b["input_ids"].to(dev), b["attention_mask"].to(dev)
+    m = summary_mask(b["prompt_lens"], mask)
+    total = m.sum()
     opt.zero_grad(set_to_none=True)
-    loss.backward()
-    torch.nn.utils.clip_grad_norm_(model.parameters(), CLIP)
+    for i in range(0, ids.size(0), MB):
+        sl = slice(i, i + MB)
+        lp = token_logprobs(model, ids[sl], mask[sl])
+        loss = -(lp * m[sl]).sum() / total
+        loss.backward()
+        run += loss.item()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
     opt.step()
-    step += 1
-    window.append(loss.item())
-    if step % LOG_EVERY == 0:                   # 2.4
-        tr, va = float(np.mean(window)), validate()
-        window = []
-        log.append({"step": step, "train_loss": tr, "val_loss": va})
-        print(f"step {step} | train {tr:.4f} | val {va:.4f}")
+    if step % EVERY == 0:
+        rec = {"step": step, "train_loss": run / EVERY, "val_loss": val_loss()}
+        run = 0.0
+        log.append(rec)
+        print(rec, flush=True)
 
-# 2.4 save
-os.makedirs("checkpoints/sft", exist_ok=True)
+elapsed = time.time() - t0
+model.config.use_cache = True
+after = samples(model)
 model.save_pretrained("checkpoints/sft")
 tok.save_pretrained("checkpoints/sft")
-
-# 2.5 AFTER SFT
-after = generate_greedy(model, tok, gen_batch, 48, device)
-samples = [{"prompt_tail": p["prompt"][-400:], "reference": p["summary"],
-            "before_sft": b, "after_sft": a}
-           for p, b, a in zip(gen_posts, before, after)]
-json.dump(samples, open("results/sft_samples.json", "w"), indent=2)
-json.dump(log,     open("results/sft_log.json", "w"), indent=2)
-
-# loss figure
-tr = [(l["step"], l["train_loss"]) for l in log if l["train_loss"] is not None]
-va = [(l["step"], l["val_loss"]) for l in log]
-plt.figure(figsize=(6, 4))
-plt.plot(*zip(*tr), marker="o", label="train")
-plt.plot(*zip(*va), marker="s", label="validation")
-plt.xlabel("step"); plt.ylabel("NLL per summary token"); plt.legend(); plt.tight_layout()
-plt.savefig("results/fig1_sft_loss.png", dpi=150)
+json.dump({"log": log, "time_sec": elapsed, "peak_gb": peak_gb(), "before": before, "after": after},
+          open("results/sft_log.json", "w"), indent=2)
+print("done", elapsed, peak_gb())
